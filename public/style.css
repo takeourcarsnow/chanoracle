@@ -1,0 +1,806 @@
+/* Add some comments for flavor */
+/*
+    >this CSS is quantum optimized
+    >bog approved styling
+    >rothschild certified
+    >simulation ready
+    >dark mode for maximum bogpill
+    >light mode for copium addicts
+*/
+
+/* Theme Variables */
+:root[data-theme="light"] {
+    /* >light mode for normies who haven't taken the bogpill */
+    --bg-color: #eef2ff;
+    --header-bg: #d6daf0;
+    --post-bg: #f0e0d6;
+    --text-color: #000000;
+    --link-color: #34345c;
+    --border-color: #b7c5d9;
+    --name-color: #117743;
+    --post-number-color: #800000;
+    --greentext-color: #789922;
+    --form-bg: #d6daf0;
+    --warning-color: #c41e3a;
+    --modal-bg: rgba(0, 0, 0, 0.7);
+    --quote-color: #789922;
+    --disclaimer-color: #ff0000;
+}
+
+:root[data-theme="dark"] {
+    /* >dark mode for bogpilled anons */
+    --bg-color: #1a1a1a;
+    --header-bg: #2c2c2c;
+    --post-bg: #282828;
+    --text-color: #dddddd;
+    --link-color: #8c8cff;
+    --border-color: #404040;
+    --name-color: #7cad7c;
+    --post-number-color: #c16666;
+    --greentext-color: #b5bd68;
+    --form-bg: #2c2c2c;
+    --warning-color: #ff6b6b;
+    --modal-bg: rgba(0, 0, 0, 0.8);
+    --quote-color: #b5bd68;
+    --disclaimer-color: #ff6b6b;
+}
+
+/* Base Styles */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    margin: 0;
+    padding: 0;
+    overflow-y: scroll; /* Keep vertical scrollbar if needed */
+    overflow-x: hidden; /* Prevent horizontal scrollbar */
+    font-size: 14px;
+    line-height: 1.4;
+    transition: background-color 0.3s ease;
+}
+
+/* Theme Toggle */
+.theme-toggle {
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    z-index: 1000;
+}
+
+.theme-switch {
+    cursor: pointer;
+    padding: 8px;
+    background: var(--header-bg);
+    border-radius: 20px;
+    border: 1px solid var(--border-color);
+    display: inline-block;
+    transition: all 0.3s ease;
+}
+
+.theme-switch:hover {
+    transform: scale(1.1);
+}
+
+#theme-switch {
+    display: none;
+}
+
+.fa-sun, .fa-moon {
+    font-size: 18px;
+    padding: 5px;
+    color: var(--text-color);
+    transition: all 0.3s ease;
+}
+
+/* Header */
+.header {
+    background-color: var(--header-bg);
+    border-bottom: 1px solid var(--border-color);
+    padding: 8px;
+    text-align: center;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.boardList {
+    font-size: 13px;
+}
+
+.boardList a {
+    color: var(--link-color);
+    text-decoration: none;
+    padding: 0 5px;
+}
+
+.boardList a:hover {
+    color: var(--warning-color);
+}
+
+/* Container */
+.container {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 0 15px;
+}
+
+/* Board Header */
+.board-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.title {
+    font-size: 24px;
+    font-weight: normal;
+    color: var(--post-number-color);
+    margin-bottom: 5px;
+}
+
+.edition {
+    font-size: 16px;
+    color: var(--text-color);
+    font-style: italic;
+}
+
+.board-info {
+    font-size: 13px;
+    color: var(--text-color);
+}
+
+.board-description {
+    margin-top: 10px;
+    font-family: monospace;
+    color: var(--greentext-color);
+}
+
+/* Bogpill Warning */
+.bogpill-warning {
+    background-color: var(--post-bg);
+    border: 2px solid var(--border-color);
+    padding: 15px;
+    margin-bottom: 20px;
+    font-family: monospace;
+}
+
+.bog-quote {
+    color: var(--post-number-color);
+    font-style: italic;
+    margin-bottom: 10px;
+    text-align: center;
+    font-size: 1.1em;
+}
+
+.bog-disclaimer {
+    color: var(--greentext-color);
+    white-space: pre-line;
+    line-height: 1.4;
+}
+
+/* Rules Box */
+.rules-box {
+    background-color: var(--post-bg);
+    border: 1px solid var(--border-color);
+    padding: 10px;
+    margin-bottom: 20px;
+    cursor: default;
+}
+
+.rules-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.rules-title {
+    color: var(--post-number-color);
+    font-weight: bold;
+}
+
+.rules-toggle {
+    background: none;
+    border: none;
+    color: var(--text-color);
+    cursor: pointer;
+    padding: 5px;
+    transition: transform 0.3s ease;
+}
+
+.rules-toggle:hover {
+    transform: scale(1.1);
+}
+
+.rules-content {
+    color: var(--greentext-color);
+    font-family: monospace;
+    white-space: pre-line;
+    line-height: 1.2;
+    margin-top: 10px;
+    padding-top: 10px;
+    border-top: 1px solid var(--border-color);
+    transition: all 0.3s ease;
+}
+
+/* Add this to ensure smooth animation */
+.rules-content.hidden {
+    display: none;
+}
+
+/* Template Selector */
+.template-carousel {
+    position: relative;
+    padding: 10px;
+    background-color: var(--header-bg);
+    border: 1px solid var(--border-color);
+    margin-bottom: 15px;
+    overflow: hidden;
+}
+
+.carousel-container {
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+
+.template-scroll {
+    display: flex;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+    padding: 0 10px;
+    flex: 1;
+    -webkit-overflow-scrolling: touch; /* Enable smooth scrolling on iOS */
+    touch-action: pan-x; /* Enable touch scrolling */
+}
+
+.template-scroll::-webkit-scrollbar {
+    display: none;
+}
+
+.carousel-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: var(--post-bg);
+    border: 1px solid var(--border-color);
+    color: var(--text-color);
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 1;
+    transition: all 0.3s ease;
+    opacity: 0.8;
+}
+
+.carousel-arrow:hover {
+    background-color: var(--header-bg);
+    transform: translateY(-50%) scale(1.1);
+    opacity: 1;
+}
+
+.left-arrow {
+    left: 0;
+}
+
+.right-arrow {
+    right: 0;
+}
+
+.template {
+    flex: 0 0 auto;
+    width: 120px;
+    background-color: var(--post-bg);
+    border: 1px solid var(--border-color);
+    padding: 10px;
+    margin: 0 5px;
+    cursor: pointer;
+    text-align: center;
+    transition: all 0.2s ease;
+    border-radius: 5px;
+    user-select: none; /* Prevent text selection while dragging */
+    -webkit-tap-highlight-color: transparent; /* Remove tap highlight on mobile */
+}
+
+.template:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+.template.selected {
+    background-color: var(--header-bg);
+    border-color: var(--link-color);
+}
+
+.template-icon {
+    font-size: 24px;
+    margin-bottom: 5px;
+    transition: transform 0.3s ease;
+}
+
+.template:hover .template-icon {
+    transform: rotate(360deg);
+}
+
+.template-title {
+    font-weight: bold;
+    margin-bottom: 3px;
+    color: var(--text-color);
+}
+
+.template-desc {
+    font-size: 12px;
+    color: var(--greentext-color);
+    font-family: monospace;
+}
+
+/* Post Form */
+.post-form {
+    background-color: var(--form-bg);
+    padding: 15px;
+    margin-bottom: 20px;
+    border: 1px solid var(--border-color);
+}
+
+.form-header {
+    color: var(--post-number-color);
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+input[type="text"],
+textarea {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    background-color: var(--bg-color);
+    border: 1px solid var(--border-color);
+    color: var(--text-color);
+    font-family: arial, helvetica, sans-serif;
+}
+
+textarea {
+    height: 100px;
+    resize: vertical;
+    font-family: monospace;
+}
+
+.form-controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+}
+
+/* Random prompt container */
+.random-prompt-container {
+    flex: 1;
+    text-align: center;
+}
+
+/* Update random button styles */
+#random-btn {
+    background-color: var(--post-bg);
+    border: 1px solid var(--border-color);
+    color: var(--text-color);
+    padding: 8px 15px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: all 0.2s ease;
+    border-radius: 5px;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+}
+
+#random-btn:hover {
+    background-color: var(--header-bg);
+    transform: translateY(-1px);
+}
+
+#random-btn:active {
+    transform: translateY(0);
+}
+
+/* Responsive adjustments */
+@media (max-width: 600px) {
+    .form-controls {
+        flex-wrap: wrap;
+    }
+    
+    .random-prompt-container {
+        order: 1;
+        flex-basis: 100%;
+        margin-top: 10px;
+    }
+    
+    #random-btn {
+        width: 100%;
+        justify-content: center;
+    }
+}
+
+button {
+    background-color: var(--post-bg);
+    border: 1px solid var(--border-color);
+    color: var(--text-color);
+    padding: 8px 15px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+button:hover {
+    background-color: var(--header-bg);
+    transform: translateY(-1px);
+}
+
+button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+/* Thread */
+.thread {
+    background-color: var(--post-bg);
+    border: 1px solid var(--border-color);
+    padding: 15px;
+    margin-bottom: 20px;
+}
+
+.thread-info {
+    font-size: 13px;
+    margin-bottom: 15px;
+    color: var(--post-number-color);
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 3px;
+}
+
+.thread-id {
+    color: var(--post-number-color);
+    margin-right: 5px;
+    font-family: monospace;
+}
+
+.thread-title {
+    font-weight: bold;
+    color: var(--text-color);
+}
+
+.thread-comment {
+    color: var(--greentext-color);
+    font-family: monospace;
+    margin-left: 5px;
+}
+
+.thread-stats {
+    float: right;
+    color: var(--text-color);
+    opacity: 0.7;
+    font-size: 12px;
+}
+
+.image-count {
+    margin-left: 10px;
+    color: var(--warning-color);
+}
+
+/* 4chan-style Catalog Markers */
+.thread-info::before {
+    content: "▶";
+    color: var(--greentext-color);
+    margin-right: 5px;
+    font-size: 10px;
+}
+
+/* Posts */
+.post {
+    margin-bottom: 15px;
+    padding: 10px;
+    border: 1px solid var(--border-color);
+    background-color: var(--post-bg);
+}
+
+.post-info {
+    margin-bottom: 5px;
+    font-size: 13px;
+}
+
+.name {
+    color: var(--name-color);
+    font-weight: bold;
+}
+
+.post-number {
+    color: var(--post-number-color);
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.post-time {
+    color: var(--text-color);
+    opacity: 0.7;
+}
+
+.post-menu {
+    margin-left: 5px;
+}
+
+.post-menu a {
+    color: var(--link-color);
+    text-decoration: none;
+}
+
+/* Greentext */
+.greentext {
+    color: var(--greentext-color);
+    font-family: monospace;
+    white-space: pre-wrap;
+    line-height: 1.4;
+}
+
+/* Typing Effect */
+.typing-container {
+    position: relative;
+    display: inline-block;
+    width: 100%;
+    min-height: 1.2em;
+    overflow: visible; /* Ensure content isn't clipped */
+}
+
+.typing-text {
+    white-space: pre-wrap;
+    line-height: 1.4;
+    color: var(--greentext-color);
+    font-family: monospace;
+    visibility: visible;
+    position: relative;
+    z-index: 1;
+    will-change: contents;
+}
+
+.typing-caret {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 2px;
+    height: 1.2em;
+    background-color: var(--greentext-color);
+    animation: blink-caret 0.75s step-end infinite;
+    visibility: hidden;
+    z-index: 2;
+    transition: transform 0.05s ease-out;
+    will-change: transform;
+}
+
+@keyframes blink-caret {
+    from, to { background-color: transparent }
+    50% { background-color: var(--greentext-color) }
+}
+
+.typing-caret.visible {
+    visibility: visible;
+}
+
+/* Modal */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--modal-bg);
+    z-index: 1000;
+}
+
+.modal.visible {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-content {
+    background-color: var(--post-bg);
+    padding: 20px;
+    border: 1px solid var(--border-color);
+    max-width: 500px;
+    width: 90%;
+    position: relative;
+}
+
+.close-modal {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    cursor: pointer;
+    color: var(--text-color);
+    font-size: 20px;
+}
+
+/* Footer */
+.footer {
+    text-align: center;
+    padding: 20px;
+    margin-top: 20px;
+    color: var(--greentext-color);
+    font-family: monospace;
+    background-color: var(--header-bg);
+    border-top: 1px solid var(--border-color);
+}
+
+/* Utilities */
+.hidden {
+    display: none !important;
+}
+
+/* Responsive Design */
+@media (max-width: 600px) {
+    .container {
+        padding: 5px;
+    }
+    
+    .template-carousel {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .board-title h1 {
+        font-size: 20px;
+    }
+    
+    .post {
+        padding: 8px;
+    }
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.post {
+    animation: fadeIn 0.3s ease-in;
+}
+
+#responses {
+    overflow: visible; /* Allow natural scrolling */
+    max-height: none; /* Remove any height constraints */
+}
+
+/* Update crypto buttons */
+.crypto-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center; /* Center the buttons horizontally */
+    gap: 5px;
+    margin-bottom: 10px;
+}
+
+.crypto-btn {
+    background-color: var(--post-bg);
+    border: 1px solid var(--border-color);
+    color: var(--text-color);
+    padding: 5px 10px;
+    cursor: pointer;
+    font-size: 12px;
+    transition: all 0.2s ease;
+    border-radius: 3px;
+    flex: 1 1 auto; /* Allow buttons to grow and shrink */
+    min-width: 60px; /* Minimum width for small screens */
+    text-align: center; /* Center text within buttons */
+}
+
+.crypto-btn:hover {
+    background-color: var(--header-bg);
+    transform: translateY(-1px);
+}
+
+.crypto-btn:active {
+    transform: translateY(0);
+}
+
+/* Responsive adjustments */
+@media (max-width: 600px) {
+    .crypto-btn {
+        flex-basis: calc(33.33% - 5px); /* 3 buttons per row on small screens */
+    }
+}
+
+@media (max-width: 400px) {
+    .crypto-btn {
+        flex-basis: calc(50% - 5px); /* 2 buttons per row on very small screens */
+    }
+}
+
+/* Update phone animation */
+.btn-loading {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease;
+}
+
+.phone-emoji {
+    display: inline-block;
+    transform-origin: center center; /* Center the rotation */
+    position: relative;
+    z-index: 1;
+    font-size: 1.2em; /* Adjust size as needed */
+}
+
+/* Update submit button container */
+#submit-btn {
+    position: relative;
+    min-height: 40px;
+    padding: 8px 15px; /* Ensure consistent padding */
+}
+
+/* Loading state */
+#submit-btn.loading .btn-text {
+    opacity: 0;
+    visibility: hidden;
+}
+
+#submit-btn.loading .btn-loading {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* Phone animation only during loading */
+#submit-btn.loading .phone-emoji {
+    animation: phone-ring 0.8s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+
+@keyframes phone-ring {
+    0% { transform: rotate(0deg); }
+    20% { transform: rotate(25deg); }
+    40% { transform: rotate(-25deg); }
+    60% { transform: rotate(15deg); }
+    80% { transform: rotate(-15deg); }
+    100% { transform: rotate(0deg); }
+}
+
+/* Pulsing effect */
+#submit-btn.loading .btn-loading::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.2);
+    transform: scale(0);
+    opacity: 0;
+    animation: phone-pulse 1.2s infinite;
+}
+
+@keyframes phone-pulse {
+    0% { transform: scale(0); opacity: 0.8; }
+    100% { transform: scale(1.5); opacity: 0; }
+}
+
+/* Character counter */
+.char-counter {
+    white-space: nowrap; /* Prevent text from wrapping */
+}
