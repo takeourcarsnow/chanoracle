@@ -804,3 +804,117 @@ button:disabled {
 .char-counter {
     white-space: nowrap; /* Prevent text from wrapping */
 }
+
+/* Tutorial Box */
+.tutorial-box {
+    background-color: var(--post-bg);
+    border: 1px solid var(--border-color);
+    padding: 15px;
+    margin-bottom: 20px;
+    cursor: default;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    animation: fadeIn 0.5s ease-in;
+}
+
+.tutorial-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.tutorial-title {
+    color: var(--post-number-color);
+    font-weight: bold;
+    font-size: 1.1em;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.tutorial-content ol {
+    list-style-type: none;
+    counter-reset: tutorial-steps;
+    padding-left: 0;
+    margin: 0;
+}
+
+.tutorial-content li {
+    margin-bottom: 15px;
+    counter-increment: tutorial-steps;
+    padding-left: 2em;
+    position: relative;
+    background: var(--bg-color);
+    padding: 10px;
+    border-radius: 3px;
+    border: 1px solid var(--border-color);
+    transition: all 0.2s ease;
+}
+
+.tutorial-content li:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.tutorial-content li span {
+    font-weight: bold;
+    color: var(--text-color);
+    display: block;
+    margin-bottom: 5px;
+}
+
+.tutorial-content li::before {
+    content: ">Step " counter(tutorial-steps) ":";
+    position: absolute;
+    left: -1.5em;
+    top: 10px;
+    color: var(--post-number-color);
+    font-weight: bold;
+    font-family: monospace;
+    background: var(--post-bg);
+    padding: 2px 5px;
+    border-radius: 3px;
+    border: 1px solid var(--border-color);
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+.tutorial-step-desc {
+    color: var(--greentext-color);
+    font-family: monospace;
+    white-space: pre-line;
+    line-height: 1.3;
+    margin-top: 5px;
+    padding-left: 1em;
+    position: relative;
+}
+
+.tutorial-step-desc::before {
+    content: '>';
+    position: absolute;
+    left: 0;
+    top: 0;
+    color: var(--greentext-color);
+    font-family: monospace;
+}
+
+.tutorial-footer {
+    color: var(--greentext-color);
+    font-family: monospace;
+    margin-top: 15px;
+    padding-top: 10px;
+    border-top: 1px solid var(--border-color);
+    text-align: center;
+    font-size: 0.9em;
+    background: var(--bg-color);
+    padding: 10px;
+    border-radius: 3px;
+    border: 1px solid var(--border-color);
+}
+
+/* Add some animation */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
